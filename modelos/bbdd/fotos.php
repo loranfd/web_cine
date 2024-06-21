@@ -12,14 +12,10 @@
 
     }
 	
-		function listado_comentarios_por_recurso($id_recurso){
+	function listado_fotos($id_usuario){
 
 		$mbd = new PDO('mysql:host='.SERVIDOR_BBDD.';dbname='.BBDD, USER_BBDD, PASSWORD_BBDD);
-		$sql = "SELECT 
-					fotos.comentario as el_comentario
-				FROM fotos
-				JOIN usuarios ON fotos.id_usuario = usuarios.id
-				WHERE fotos.id_usuario = '$id_usu'";
+		$sql = "SELECT * FROM fotos WHERE id_usuario = " . $id_usuario;
 		$comentarios = $mbd->query($sql);
 		$array = $comentarios->fetchAll(PDO::FETCH_ASSOC);
 		return $array;
